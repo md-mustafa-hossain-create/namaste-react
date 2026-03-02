@@ -1,5 +1,9 @@
 # 🚀 Namaste React – My React Learning Journey  
 
+![React](https://img.shields.io/badge/React-Learning-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-In%20Progress-orange)
+
 This repository documents my journey of learning and mastering React.  
 It contains all my practice code, experiments, assignments, and mini projects as I progress through the Namaste React course and explore modern frontend development.
 
