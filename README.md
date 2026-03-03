@@ -31,6 +31,10 @@ Topics covered in this repository include:
 
 ```text
 namaste-react/
+|- react-foundation/
+|  |- App.js
+|  |- index.css
+|  `- index.html
 |- .gitignore
 |- LICENSE
 `- README.md
