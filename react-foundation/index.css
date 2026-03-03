@@ -1,0 +1,28 @@
+#heading{
+  color: red;
+}
+
+#parent{
+  padding: 10px;
+  background-color: green;
+  width: fit-content;
+
+}
+
+#children{
+  padding: 4px;
+  background-color: aqua;
+  width: fit-content;
+}
+
+#children2{
+  padding: 4px;
+  background-color: rgb(255, 251, 0);
+  width: fit-content;
+}
+
+#children3{
+  padding: 4px;
+  background-color: rgb(255, 0, 0);
+  width: fit-content;
+}
