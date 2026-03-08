@@ -285,31 +285,24 @@ const Header = () => {
     </div>
   );
 };
-const RestaurantCard = ({
-  resName,
-  rating,
-  time,
-  image,
-  cuisines,
-  location,
-}) => {
+const RestaurantCard = ({ resData }) => {
   return (
     <div className="w-fit flex flex-col gap-2 hover:scale-95 transition-all duration-200 cursor-pointer">
       <div className="rounded-2xl overflow-hidden w-fit">
-        <img className="w-xs h-48 object-cover" src={image} />
+        <img className="w-xs h-48 object-cover" src={resData.info.image} />
       </div>
 
       <div>
-        <h3 className="text-lg font-bold">{resName}</h3>
+        <h3 className="text-lg font-bold">{resData.info.resName}</h3>
         <div className="flex items-center gap-1">
           <CircleStar fill="green" color="white" />
           <p className="font-semibold text-lg">
-            {rating} • {time}
+            {resData.info.rating} • {resData.info.time}
           </p>
         </div>
         <div>
-          <p className="text-gray-600 font-medium">{cuisines}</p>
-          <p className="text-gray-600 font-medium">{location}</p>
+          <p className="text-gray-600 font-medium">{resData.info.cuisines}</p>
+          <p className="text-gray-600 font-medium">{resData.info.location}</p>
         </div>
       </div>
     </div>
@@ -331,16 +324,8 @@ const Body = () => {
         </button>
       </div>
       <div className="flex flex-wrap gap-7 justify-between ">
-        {resList.map((res) => (
-          <RestaurantCard
-            key={res.info.id}
-            resName={res.info.name}
-            rating={res.info.rating}
-            time={res.info.time}
-            image={res.info.image}
-            cuisines={res.info.cuisines.join(", ")}
-            location={res.info.location}
-          />
+        {resList.map((restaurant) => (
+          <RestaurantCard resData={restaurant} key={restaurant.info.id} />
         ))}
       </div>
     </div>
