@@ -31,10 +31,19 @@ Topics covered in this repository include:
 
 ```text
 namaste-react/
+|- food-ordering-app/
+|  |- App.js
+|  |- index.css
+|  |- index.html
+|  |- package-lock.json
+|  |- package.json
+|  `- postcss.config.mjs
 |- react-foundation/
 |  |- App.js
 |  |- index.css
-|  `- index.html
+|  |- index.html
+|  |- package-lock.json
+|  `- package.json
 |- .gitignore
 |- LICENSE
 `- README.md
