@@ -22,7 +22,12 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
         value={searchText}
         placeholder="Search your dish...."
         onChange={(e) => {
-          setSearchText(e.target.value);
+          const value = e.target.value;
+          setSearchText(value);
+          const searchedList = listOfRestaurants.filter((res) =>
+            res.info.name.toLowerCase().includes(value.toLocaleLowerCase()),
+          );
+          setFilteredRestaurants(searchedList);
         }}
       />
       <button
