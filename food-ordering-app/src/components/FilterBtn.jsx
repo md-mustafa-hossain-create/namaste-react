@@ -1,9 +1,9 @@
-const FilterBtn = ({ listOfRestaurants, setListOfRestaurants }) => {
+const FilterBtn = ({ listOfRestaurants, setFilteredRestaurants }) => {
   const handleClick = () => {
     const topRestaurants = listOfRestaurants.filter(
       (restaurant) => restaurant.info.avgRating > 4.5,
     );
-    setListOfRestaurants(topRestaurants);
+    setFilteredRestaurants(topRestaurants);
   };
   return (
     <button
