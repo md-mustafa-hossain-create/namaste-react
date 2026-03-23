@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "axios": "^1.13.6"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3"
+  }
+}
