@@ -7,7 +7,10 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
   function handleClick(e) {
     e.preventDefault();
     const searchedList = listOfRestaurants.filter((res) =>
-      res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase()),
+      res.card.card.info.name
+        .toLowerCase()
+        .replace(/[^a-zA-Z0-9 ]/g, "")
+        .includes(searchText.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, "")),
     );
     setFilteredRestaurants(searchedList);
   }
@@ -25,7 +28,12 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
           const value = e.target.value;
           setSearchText(value);
           const searchedList = listOfRestaurants.filter((res) =>
-            res.info.name.toLowerCase().includes(value.toLocaleLowerCase()),
+            res.card.card.info.name
+              .toLowerCase()
+              .replace(/[^a-zA-Z0-9 ]/g, "")
+              .includes(
+                value.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, ""),
+              ),
           );
           setFilteredRestaurants(searchedList);
         }}

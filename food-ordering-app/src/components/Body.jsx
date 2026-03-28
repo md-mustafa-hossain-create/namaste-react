@@ -3,10 +3,12 @@ import useRestaurants from "../utils/useRestaurants";
 import Shimmer from "./Shimmer";
 import FilterBtn from "./FilterBtn";
 import SearchBar from "./SearchBar";
+import { useEffect } from "react";
 
 const Body = () => {
   const { listOfRestaurants, filteredRestaurants, setFilteredRestaurants } =
     useRestaurants();
+
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -24,7 +26,10 @@ const Body = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 justify-items-center sm:justify-items-start">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard resData={restaurant} key={restaurant.info.id} />
+          <RestaurantCard
+            resData={restaurant}
+            key={restaurant?.card?.card?.info?.id}
+          />
         ))}
       </div>
     </div>

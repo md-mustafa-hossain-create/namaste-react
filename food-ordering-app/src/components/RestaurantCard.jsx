@@ -2,7 +2,7 @@ import { CircleStar } from "lucide-react";
 
 const RestaurantCard = ({ resData }) => {
   const { cloudinaryImageId, name, avgRating, sla, locality, cuisines } =
-    resData.info;
+    resData.card.card.info;
   return (
     <div className="w-full flex flex-col gap-2 hover:scale-95 transition-all duration-200 cursor-pointer">
       <div className="rounded-2xl overflow-hidden w-full">
