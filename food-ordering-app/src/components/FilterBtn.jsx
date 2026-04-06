@@ -1,7 +1,7 @@
 const FilterBtn = ({ listOfRestaurants, setFilteredRestaurants }) => {
   const handleClick = () => {
     const topRestaurants = listOfRestaurants.filter(
-      (restaurant) => restaurant.info.avgRating > 4.5,
+      (restaurant) => restaurant?.card?.card?.info?.avgRating > 4.5,
     );
     setFilteredRestaurants(topRestaurants);
   };

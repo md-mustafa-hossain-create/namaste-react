@@ -16,18 +16,18 @@ const RestaurantCard = ({ resData }) => {
       </div>
 
       <div className="px-1">
-        <h3 className="text-lg font-bold">{name}</h3>
+        <h3 className="text-lg font-bold text-swiggy-dark">{name}</h3>
         <div className="flex items-center gap-1">
-          <CircleStar fill="green" color="white" />
-          <p className="font-semibold text-lg">
+          <CircleStar fill="#60b246" color="white" size={18} />
+          <p className="font-semibold text-lg text-swiggy-text-main">
             {avgRating} • {sla?.slaString}
           </p>
         </div>
         <div>
-          <div className="text-gray-600 font-medium">
+          <div className="text-swiggy-text-muted font-medium">
             <p>{cuisines.join(", ")}</p>
           </div>
-          <p className="text-gray-600 font-medium">{locality}</p>
+          <p className="text-swiggy-text-muted font-medium">{locality}</p>
         </div>
       </div>
     </div>

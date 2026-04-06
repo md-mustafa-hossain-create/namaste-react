@@ -1,6 +1,6 @@
 const Shimmer = () => {
   return (
-    <div className="px-4 sm:px-8 md:px-16 pt-24">
+    <div className="px-4 sm:px-8 md:px-16">
       {/* Search & Filter Shimmer */}
       <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 w-full mb-8">
         <div className="flex gap-3 w-full sm:w-auto">

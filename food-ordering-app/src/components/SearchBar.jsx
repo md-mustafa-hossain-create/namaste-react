@@ -20,7 +20,7 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
       onSubmit={handleClick}
     >
       <input
-        className="border border-gray-400 w-full sm:w-96 p-3 px-6 rounded-full text-lg focus:outline-none focus:border-red-500 transition-colors"
+        className="border border-gray-300 w-full sm:w-96 p-3 px-6 rounded-full text-lg focus:outline-none focus:border-swiggy-orange transition-colors text-swiggy-text-main placeholder:text-swiggy-text-muted"
         type="text"
         value={searchText}
         placeholder="Search your dish...."
@@ -40,12 +40,13 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
       />
       <button
         type="submit"
-        className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition-colors flex items-center justify-center cursor-pointer shrink-0"
+        className="bg-swiggy-dark text-white p-3 rounded-full hover:bg-swiggy-orange transition-colors flex items-center justify-center cursor-pointer shrink-0"
       >
         <Search size={24} />
       </button>
-    </form>
+    </form> 
   );
 };
 
 export default SearchBar;
+
