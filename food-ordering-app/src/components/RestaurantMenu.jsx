@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import MenuItem from "./MenuItem";
+import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const restaurantMenu = useRestaurantMenu();
+  const { resId } = useParams();
+  const restaurantMenu = useRestaurantMenu(resId);
 
   if (restaurantMenu === null) {
     return <Shimmer />;
   }
 
   const { name, cuisines, avgRatingString, city } =
-    restaurantMenu?.cards?.[2]?.card?.card?.info;
+    restaurantMenu?.cards?.[2]?.card?.card?.info || {};
 
   const { itemCards } =
     restaurantMenu?.cards[5]?.groupedCard.cardGroupMap.REGULAR.cards[1].card
-      .card;
+      .card || {};
 
   return (
     <div className="menu-container">

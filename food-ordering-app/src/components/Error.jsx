@@ -42,7 +42,7 @@ const Error = () => {
             <h1 className="text-2xl font-bold text-gray-800 leading-snug">
               We couldn&apos;t find that page
             </h1>
-            <p className="text-gray-500 text-base leading-relaxed">
+            <p className="text-gray-700 text-base leading-relaxed font-medium">
               {err?.data ||
                 "The page you're looking for may have been moved, deleted, or doesn't exist. Let's get you back on track."}
             </p>

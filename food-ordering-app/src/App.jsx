@@ -8,10 +8,16 @@ import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
 import Error from "./components/Error.jsx";
 import RestaurantMenu from "./components/RestaurantMenu.jsx";
+import Offline from "./components/Offline.jsx";
+import useOnlineStatus from "./utils/useOnlineStatus.js";
 
 const AppLayout = () => {
+  const onlineStatus = useOnlineStatus();
+
+  if (!onlineStatus) return <Offline />;
+
   return (
-    <div className="app flex flex-col min-h-screen">
+    <div className="app flex flex-col min-h-screen text-swiggy-text-main">
       <Header />
       <main className="flex-1 pt-20 md:pt-24">
         <Outlet />
