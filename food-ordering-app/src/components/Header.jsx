@@ -1,4 +1,4 @@
-import { ShoppingBasket } from "lucide-react";
+import { ShoppingBasket, ShoppingBag } from "lucide-react";
 import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -31,6 +31,12 @@ const Header = () => {
           </li>
           <li className="hover:text-swiggy-orange cursor-pointer">
             <Link to="/contact">Contact Us</Link>
+          </li>
+          <li className="hover:text-swiggy-green cursor-pointer">
+            <Link to="/grocery" className="flex items-center gap-1">
+              Grocery
+              <ShoppingBag className="w-5 h-5 text-swiggy-green" />
+            </Link>
           </li>
           <li className=" hover:text-swiggy-orange cursor-pointer">
             <Link to="#" className="flex gap-2">
