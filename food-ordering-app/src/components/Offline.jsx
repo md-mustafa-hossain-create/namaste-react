@@ -31,7 +31,7 @@ const Offline = () => {
         {/* Professional Call-to-action */}
         <button 
           onClick={() => window.location.reload()}
-          className="w-full bg-swiggy-dark hover:bg-swiggy-orange text-white py-4 rounded-2xl font-black text-xs tracking-[0.1em] uppercase transition-all duration-300 active:scale-95 shadow-xl shadow-gray-100"
+          className="w-full bg-swiggy-dark hover:bg-swiggy-orange text-white py-4 rounded-2xl font-black text-xs tracking-[0.1em] uppercase transition-all duration-300 active:scale-95 shadow-xl shadow-gray-100 cursor-pointer"
         >
           Reload Page
         </button>
