@@ -1,10 +1,14 @@
 import { CircleStar } from "lucide-react";
 
-const RestaurantCard = ({ resData }) => {
+const RestaurantCard = ({ resData, shouldScale = true }) => {
   const { cloudinaryImageId, name, avgRating, sla, locality, cuisines } =
     resData.card.card.info;
   return (
-    <div className="w-full flex flex-col gap-2 hover:scale-95 transition-all duration-200 cursor-pointer">
+    <div
+      className={`w-full flex flex-col gap-2 transition-all duration-200 cursor-pointer ${
+        shouldScale ? "hover:scale-95" : ""
+      }`}
+    >
       <div className="rounded-2xl overflow-hidden w-full">
         <img
           className="w-full h-48 sm:h-56 object-cover"
@@ -33,5 +37,25 @@ const RestaurantCard = ({ resData }) => {
     </div>
   );
 };
+
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div className="relative w-full transition-transform duration-200 hover:scale-95 cursor-pointer">
+        {/* Modern Swiggy-style Promoted Badge */}
+        <div className="absolute top-3 left-3 z-20">
+          <span className="bg-gray-900/90 backdrop-blur-md text-white px-2 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20 inline-block">
+            Promoted
+          </span>
+        </div>
+
+        {/* We tell the internal card NOT to scale, because the HOC wrapper is doing it now! */}
+        <RestaurantCard {...props} shouldScale={false} />
+      </div>
+    );
+  };
+};
+
+export const PromotedRestaurantCard = withPromotedLabel(RestaurantCard);
 
 export default RestaurantCard;

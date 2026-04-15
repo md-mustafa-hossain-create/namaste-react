@@ -17,15 +17,15 @@ const Header = () => {
       : "text-swiggy-text-main hover:text-swiggy-orange transition-colors duration-300";
 
   return (
-    <div className="flex justify-between items-center px-4 sm:px-8 xl:px-16 shadow-lg bg-white fixed w-full top-0 h-20 md:h-24 overflow-hidden z-10 transition-all font-sans">
+    <div className="flex justify-between items-center px-4 sm:px-8 xl:px-16 shadow-lg bg-white fixed w-full top-0 h-20 md:h-24 overflow-hidden z-50 transition-all font-sans">
       <div className="flex items-center gap-2">
         <img
           className="w-10 sm:w-12 md:w-14 drop-shadow-sm"
           src={LOGO_URL}
-          alt="RestoHub Logo"
+          alt="Namaste Food Logo"
         />
         <p className="hidden sm:block text-2xl font-black text-swiggy-dark tracking-tighter">
-          Resto<span className="text-swiggy-orange">Hub</span>
+          Namaste<span className="text-swiggy-orange"> Food</span>
         </p>
       </div>
 
