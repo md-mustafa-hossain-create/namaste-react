@@ -11,8 +11,6 @@ const Body = () => {
   const { listOfRestaurants, filteredRestaurants, setFilteredRestaurants } =
     useRestaurants();
 
-  console.log(listOfRestaurants);
-
   const isOnline = useOnlineStatus();
 
   return listOfRestaurants.length === 0 ? (
@@ -25,21 +23,21 @@ const Body = () => {
             listOfRestaurants={listOfRestaurants}
             setFilteredRestaurants={setFilteredRestaurants}
           />
-
           <FilterBtn
             listOfRestaurants={listOfRestaurants}
             setFilteredRestaurants={setFilteredRestaurants}
           />
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 justify-items-center sm:justify-items-start">
           {filteredRestaurants.map((restaurant) => {
             const resId = restaurant?.card?.card?.info?.id;
             const promoted = restaurant?.card?.card?.info?.promoted;
+
             return (
-              // 2. Wrap it in a Link! (Put the 'key' on the Link tag)
               <Link key={resId} to={"/restaurant/" + resId} className="w-full">
                 {promoted ? (
-                  <PromotedRestaurantCard resData={restaurant}  />
+                  <PromotedRestaurantCard resData={restaurant} />
                 ) : (
                   <RestaurantCard resData={restaurant} />
                 )}
@@ -52,4 +50,5 @@ const Body = () => {
     </div>
   );
 };
+
 export default Body;

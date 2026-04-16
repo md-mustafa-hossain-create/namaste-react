@@ -4,16 +4,21 @@ import { Search } from "lucide-react";
 const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
   const [searchText, setSearchText] = useState("");
 
-  function handleClick(e) {
-    e.preventDefault();
+  function performSearch(text) {
     const searchedList = listOfRestaurants.filter((res) =>
-      res.card.card.info.name
-        .toLowerCase()
-        .replace(/[^a-zA-Z0-9 ]/g, "")
-        .includes(searchText.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, "")),
+      res?.card?.card?.info?.name
+        ?.toLowerCase()
+        ?.replace(/[^a-zA-Z0-9 ]/g, "")
+        ?.includes(text.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, "")),
     );
     setFilteredRestaurants(searchedList);
   }
+
+  function handleClick(e) {
+    e.preventDefault();
+    performSearch(searchText);
+  }
+
   return (
     <form
       className="flex gap-3 w-full sm:w-auto justify-center sm:justify-start"
@@ -27,15 +32,7 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
         onChange={(e) => {
           const value = e.target.value;
           setSearchText(value);
-          const searchedList = listOfRestaurants.filter((res) =>
-            res.card.card.info.name
-              .toLowerCase()
-              .replace(/[^a-zA-Z0-9 ]/g, "")
-              .includes(
-                value.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, ""),
-              ),
-          );
-          setFilteredRestaurants(searchedList);
+          performSearch(value);
         }}
       />
       <button
@@ -44,9 +41,8 @@ const SearchBar = ({ listOfRestaurants, setFilteredRestaurants }) => {
       >
         <Search size={24} />
       </button>
-    </form> 
+    </form>
   );
 };
 
 export default SearchBar;
-

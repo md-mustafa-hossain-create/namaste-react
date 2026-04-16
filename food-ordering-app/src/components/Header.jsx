@@ -10,7 +10,6 @@ const Header = () => {
     btnName === "Log in" ? setBtnName("Log out") : setBtnName("Log in");
   }
 
-  // Dynamic Class for Active Links
   const getNavLinkClass = ({ isActive }) =>
     isActive
       ? "text-swiggy-orange transition-colors duration-300"
@@ -32,25 +31,21 @@ const Header = () => {
       <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
         <ul className="hidden lg:flex gap-4 xl:gap-8 items-center text-lg font-bold">
           <li className="cursor-pointer">
-            <NavLink to="/" className={getNavLinkClass}>
-              Home
-            </NavLink>
+            <NavLink to="/" className={getNavLinkClass}>Home</NavLink>
           </li>
           <li className="cursor-pointer">
-            <NavLink to="/about" className={getNavLinkClass}>
-              About
-            </NavLink>
+            <NavLink to="/about" className={getNavLinkClass}>About</NavLink>
           </li>
           <li className="cursor-pointer">
-            <NavLink to="/contact" className={getNavLinkClass}>
-              Contact
-            </NavLink>
+            <NavLink to="/contact" className={getNavLinkClass}>Contact</NavLink>
           </li>
           <li className="cursor-pointer">
-            <NavLink 
-              to="/grocery" 
-              className={({ isActive }) => 
-                isActive ? "text-swiggy-green flex items-center gap-1" : "text-swiggy-text-main hover:text-swiggy-green flex items-center gap-1"
+            <NavLink
+              to="/grocery"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-swiggy-green flex items-center gap-1"
+                  : "text-swiggy-text-main hover:text-swiggy-green flex items-center gap-1"
               }
             >
               Grocery
@@ -67,7 +62,7 @@ const Header = () => {
           </li>
         </ul>
 
-        {/* Mobile Cart Icon */}
+        {/* Mobile-only cart icon */}
         <div className="flex lg:hidden text-swiggy-text-main hover:text-swiggy-orange cursor-pointer font-semibold gap-1 items-center">
           <ShoppingBasket className="w-6 h-6" />
         </div>
