@@ -16,7 +16,7 @@ const Poster = () => {
           className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
         />
 
-        <div className="relative z-[1] max-w-3xl flex flex-col items-center gap-6">
+        <div className="relative z-1 max-w-3xl flex flex-col items-center gap-6">
 
           {/* Brand */}
           <div className="flex flex-col items-center gap-2">

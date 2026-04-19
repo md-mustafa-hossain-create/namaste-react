@@ -2,8 +2,10 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
+  const [openIndex, setOpenIndex] = useState(0);
   const { resId } = useParams();
   const restaurantMenu = useRestaurantMenu(resId);
 
@@ -34,10 +36,14 @@ const RestaurantMenu = () => {
       </div>
 
       <div className="max-w-[800px] mx-auto p-4">
-        {category.map((cat) => (
+        {category.map((cat, index) => (
           <RestaurantCategory
             key={cat?.card?.card?.title || cat?.card?.card?.categoryId}
             data={cat?.card?.card}
+            showItems={openIndex === index}
+            setOpenIndex={() =>
+              openIndex === index ? setOpenIndex(null) : setOpenIndex(index)
+            }
           />
         ))}
       </div>

@@ -1,10 +1,17 @@
+import VegIcon from "./icons/VegIcon";
+import NonVegIcon from "./icons/NonVegIcon";
+
 const MenuItem = ({ data }) => {
-  const { name, imageId, defaultPrice, description } = data?.card?.info || {};
+  const { name, imageId, defaultPrice, description, isVeg } =
+    data?.card?.info || {};
 
   return (
     <div>
       <li className="flex justify-between items-center py-6 border-b border-gray-200">
         <div className="flex flex-col gap-1 w-2/3">
+          <div className="mb-1">
+            {isVeg === 1 || isVeg === true ? <VegIcon /> : <NonVegIcon />}
+          </div>
           <h2 className="text-xl font-bold text-swiggy-text-main">{name}</h2>
           <h3 className="font-bold text-swiggy-text-main">
             ₹ {(defaultPrice || data?.card?.info?.price) / 100}
