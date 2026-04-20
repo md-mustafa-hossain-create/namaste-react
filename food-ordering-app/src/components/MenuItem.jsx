@@ -1,9 +1,18 @@
 import VegIcon from "./icons/VegIcon";
 import NonVegIcon from "./icons/NonVegIcon";
+import { useDispatch } from "react-redux";
+import { addItems } from "../store/slices/cartSlice";
+import { ITEM_IMG_URL } from "../utils/constants";
 
 const MenuItem = ({ data }) => {
   const { name, imageId, defaultPrice, description, isVeg } =
     data?.card?.info || {};
+
+  const dispatch = useDispatch();
+
+  function handleAddItems(data) {
+    dispatch(addItems(data));
+  }
 
   return (
     <div>
@@ -23,13 +32,13 @@ const MenuItem = ({ data }) => {
         <div className="relative flex flex-col items-center ml-4">
           <img
             className="w-56 h-32 object-cover rounded-2xl shadow-lg"
-            src={
-              "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" +
-              imageId
-            }
+            src={ITEM_IMG_URL + imageId}
             alt={name}
           />
-          <button className="absolute -bottom-6 bg-white text-swiggy-green font-black px-10 py-3 rounded-xl border border-gray-100 shadow-xl hover:bg-gray-50 active:scale-95 transition-all uppercase text-sm cursor-pointer whitespace-nowrap">
+          <button
+            className="absolute -bottom-6 bg-white text-swiggy-green font-black px-10 py-3 rounded-xl border border-gray-100 shadow-xl hover:bg-gray-50 active:scale-95 transition-all uppercase text-sm cursor-pointer whitespace-nowrap"
+            onClick={() => handleAddItems(data)}
+          >
             ADD +
           </button>
         </div>

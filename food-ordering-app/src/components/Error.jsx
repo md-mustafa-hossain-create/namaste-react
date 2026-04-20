@@ -3,85 +3,78 @@ import { useRouteError, Link } from "react-router-dom";
 const Error = () => {
   const err = useRouteError();
 
-
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-
-      {/* ── Navbar (mirrors site header) ── */}
-      <header className="flex items-center px-8 py-5 border-b border-gray-100 shadow-sm bg-white">
+    <div className="min-h-screen bg-white flex flex-col font-sans">
+      {/* ── Navbar ── */}
+      <header className="flex items-center px-4 sm:px-8 xl:px-16 py-5 border-b border-gray-100 shadow-sm bg-white h-20 md:h-24 sticky top-0 z-50">
         <Link to="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-gray-900">
-            Namaste <span className="text-red-600">Food</span>
-          </span>
+          <p className="text-2xl font-black text-swiggy-dark tracking-tighter">
+            Namaste<span className="text-swiggy-orange"> Food</span>
+          </p>
         </Link>
       </header>
 
       {/* ── Main ── */}
-      <main className="flex-1 flex items-center justify-center px-6 py-20">
-        <div className="max-w-xl w-full text-center space-y-8">
-
+      <main className="flex-1 flex items-center justify-center px-6 py-12 md:py-20">
+        <div className="max-w-xl w-full text-center space-y-8 animate-fadeIn">
           {/* Error code — large but subtle */}
           <div className="space-y-1">
-            <p className="text-8xl font-black text-gray-800 tracking-tighter leading-none select-none">
+            <p className="text-[120px] md:text-[180px] font-black text-gray-100 tracking-tighter leading-none select-none absolute left-1/2 -translate-x-1/2 -z-10 opacity-30">
               {err?.status || "404"}
             </p>
-            <p className="text-sm font-semibold text-red-600 uppercase tracking-widest -mt-2">
+            <p className="text-8xl font-black text-swiggy-dark tracking-tighter leading-none select-none relative z-10">
+              Oops!
+            </p>
+            <p className="text-sm font-bold text-swiggy-orange uppercase tracking-[0.3em] mt-4 relative z-10">
               {err?.statusText || "Page Not Found"}
             </p>
           </div>
 
-          {/* Divider */}
-          <div className="flex items-center gap-4">
-            <div className="flex-1 h-px bg-gray-100"></div>
-            <span className="text-gray-300 text-xs">✦</span>
-            <div className="flex-1 h-px bg-gray-100"></div>
-          </div>
-
           {/* Heading & description */}
-          <div className="space-y-3 px-4">
-            <h1 className="text-2xl font-bold text-gray-800 leading-snug">
-              We couldn&apos;t find that page
+          <div className="space-y-4 px-4 relative z-10">
+            <h1 className="text-2xl md:text-3xl font-extrabold text-swiggy-dark leading-snug">
+              Lost in the flavor?
             </h1>
-            <p className="text-gray-700 text-base leading-relaxed font-medium">
+            <p className="text-swiggy-text-muted text-base md:text-lg leading-relaxed max-w-md mx-auto">
               {err?.data ||
-                "The page you're looking for may have been moved, deleted, or doesn't exist. Let's get you back on track."}
+                "The page you're looking for didn't make the menu. Let's get you back to the delicious stuff."}
             </p>
           </div>
 
-          {/* CTAs — primary + secondary (Hick's Law: max 2 choices) */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 relative z-10">
             <Link
               to="/"
-              className="w-full sm:w-auto bg-red-600 hover:bg-red-700 active:scale-95 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg text-sm"
+              className="w-full sm:w-auto bg-swiggy-orange hover:bg-orange-600 active:scale-95 text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 shadow-lg shadow-orange-500/20 text-sm md:text-base uppercase tracking-wider"
             >
-              Go to Homepage
+              Back to Home
             </Link>
             <Link
               to="/contact"
-              className="w-full sm:w-auto bg-white hover:bg-gray-50 active:scale-95 text-gray-800 font-semibold py-3 px-8 rounded-xl border border-gray-200 transition-all duration-200 text-sm hover:border-gray-300"
+              className="w-full sm:w-auto bg-white hover:bg-gray-50 active:scale-95 text-swiggy-dark font-bold py-4 px-10 rounded-xl border-2 border-gray-100 transition-all duration-300 text-sm md:text-base uppercase tracking-wider"
             >
-              Contact Support
+              Help & Support
             </Link>
           </div>
 
-          {/* Breadcrumb hint */}
-          <p className="text-xs text-gray-400">
-            Error code &nbsp;
-            <span className="font-mono bg-gray-50 px-2 py-0.5 rounded border border-gray-100 text-gray-500">
-              {err?.status || "404"}
-            </span>
-            &nbsp;· Namaste Food
-          </p>
+          {/* Technical Info */}
+          <div className="pt-8 opacity-40">
+            <p className="text-xs font-medium text-swiggy-text-muted flex items-center justify-center gap-2">
+              <span className="w-1 h-1 bg-swiggy-text-muted rounded-full"></span>
+              ERROR {err?.status || "404"}
+              <span className="w-1 h-1 bg-swiggy-text-muted rounded-full"></span>
+              NAMASTE FOOD
+            </p>
+          </div>
         </div>
       </main>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-gray-100 py-5 text-center">
-        <p className="text-xs text-gray-400">
-          © {new Date().getFullYear()} Namaste Food. All rights reserved.
+      <footer className="py-8 text-center border-t border-gray-50">
+        <p className="text-sm font-medium text-swiggy-text-muted">
+          © {new Date().getFullYear()} Namaste Food Limited.
         </p>
       </footer>
-
     </div>
   );
 };

@@ -8,7 +8,6 @@ const Poster = () => {
   return (
     <div className="w-full mt-8 px-4 md:px-16 mb-12">
       <div className="relative w-full bg-gray-900 rounded-[32px] overflow-hidden flex flex-col items-center justify-center text-center border border-gray-800 shadow-lg min-h-[300px] py-10 px-8">
-
         {/* Dimmed background food image */}
         <img
           src={FOOD_IMAGE}
@@ -17,7 +16,6 @@ const Poster = () => {
         />
 
         <div className="relative z-1 max-w-3xl flex flex-col items-center gap-6">
-
           {/* Brand */}
           <div className="flex flex-col items-center gap-2">
             <img src={LOGO_URL} alt="Namaste Food Logo" className="w-12 h-12" />
@@ -34,16 +32,16 @@ const Poster = () => {
 
           {/* Subtext */}
           <p className="text-lg md:text-xl text-gray-400 font-medium max-w-xl">
-            Discover top-rated restaurants near you and order your favourite meals — all from your browser.
+            Discover top-rated restaurants near you and order your favourite
+            meals — all from your browser.
           </p>
 
-          {/* CTA Button */}
-          <Link
-            to="/"
-            className="mt-2 bg-orange-500 hover:bg-orange-600 active:scale-95 text-white font-black text-base px-10 py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/30 uppercase tracking-wide"
-          >
-            Explore Restaurants
-          </Link>
+          {/* Catchy Tagline */}
+          <div className="mt-4 py-2 px-6 border-y border-white/10">
+            <p className="text-orange-500 font-bold italic tracking-wide text-lg md:text-xl">
+              "From street food hits to high-end treats — satisfy every craving, right here."
+            </p>
+          </div>
         </div>
       </div>
     </div>

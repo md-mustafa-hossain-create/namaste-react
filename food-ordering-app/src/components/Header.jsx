@@ -2,6 +2,7 @@ import { ShoppingBasket, ShoppingBag } from "lucide-react";
 import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Log in");
@@ -15,6 +16,10 @@ const Header = () => {
       ? "text-swiggy-orange transition-colors duration-300"
       : "text-swiggy-text-main hover:text-swiggy-orange transition-colors duration-300";
 
+  //subscribing to the redux store using a Selector
+  const cartItems = useSelector((store) => store.cart.items);
+
+  console.log(cartItems);
   return (
     <div className="flex justify-between items-center px-4 sm:px-8 xl:px-16 shadow-lg bg-white fixed w-full top-0 h-20 md:h-24 overflow-hidden z-50 transition-all font-sans">
       <div className="flex items-center gap-2">
@@ -31,13 +36,19 @@ const Header = () => {
       <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
         <ul className="hidden lg:flex gap-4 xl:gap-8 items-center text-lg font-bold">
           <li className="cursor-pointer">
-            <NavLink to="/" className={getNavLinkClass}>Home</NavLink>
+            <NavLink to="/" className={getNavLinkClass}>
+              Home
+            </NavLink>
           </li>
           <li className="cursor-pointer">
-            <NavLink to="/about" className={getNavLinkClass}>About</NavLink>
+            <NavLink to="/about" className={getNavLinkClass}>
+              About
+            </NavLink>
           </li>
           <li className="cursor-pointer">
-            <NavLink to="/contact" className={getNavLinkClass}>Contact</NavLink>
+            <NavLink to="/contact" className={getNavLinkClass}>
+              Contact
+            </NavLink>
           </li>
           <li className="cursor-pointer">
             <NavLink
@@ -53,19 +64,41 @@ const Header = () => {
             </NavLink>
           </li>
           <li className="cursor-pointer">
-            <NavLink to="/cart" className={getNavLinkClass}>
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                `${getNavLinkClass({ isActive })} group`
+              }
+            >
               <div className="flex gap-2 items-center">
                 Cart
-                <ShoppingBasket className="w-6 h-6" />
+                <div className="relative">
+                  <ShoppingBasket className="w-7 h-7 transition-transform group-hover:scale-110" />
+                  {cartItems.length > 0 && (
+                    <span className="absolute -top-1.5 -right-1.5 bg-swiggy-orange text-white text-[11px] font-bold min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full shadow-md leading-none transition-all group-hover:scale-110">
+                      {cartItems.length}
+                    </span>
+                  )}
+                </div>
               </div>
             </NavLink>
           </li>
         </ul>
 
         {/* Mobile-only cart icon */}
-        <div className="flex lg:hidden text-swiggy-text-main hover:text-swiggy-orange cursor-pointer font-semibold gap-1 items-center">
-          <ShoppingBasket className="w-6 h-6" />
-        </div>
+        <NavLink
+          to="/cart"
+          className="flex lg:hidden text-swiggy-text-main hover:text-swiggy-orange cursor-pointer font-semibold gap-1 items-center group"
+        >
+          <div className="relative">
+            <ShoppingBasket className="w-7 h-7 transition-transform group-hover:scale-110" />
+            {cartItems.length > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-swiggy-orange text-white text-[11px] font-bold min-w-[18px] h-[18px] px-1 flex items-center justify-center rounded-full shadow-md leading-none transition-all group-hover:scale-110">
+                {cartItems.length}
+              </span>
+            )}
+          </div>
+        </NavLink>
 
         <button
           className={`${
