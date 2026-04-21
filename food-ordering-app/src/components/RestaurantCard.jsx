@@ -1,4 +1,5 @@
 import { CircleStar } from "lucide-react";
+import { CDN_URL } from "../utils/constants";
 
 // shouldScale is disabled when this card is wrapped inside an HOC to prevent double-scaling
 const RestaurantCard = ({ resData, shouldScale = true }) => {
@@ -14,10 +15,7 @@ const RestaurantCard = ({ resData, shouldScale = true }) => {
       <div className="rounded-2xl overflow-hidden w-full">
         <img
           className="w-full h-48 sm:h-56 object-cover"
-          src={
-            "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-            cloudinaryImageId
-          }
+          src={CDN_URL + cloudinaryImageId}
           alt={name}
         />
       </div>

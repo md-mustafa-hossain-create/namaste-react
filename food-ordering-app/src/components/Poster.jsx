@@ -1,16 +1,13 @@
-import { LOGO_URL } from "../utils/constants";
+import { LOGO_URL, POSTER_BG_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 
 const Poster = () => {
-  const FOOD_IMAGE =
-    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1000";
-
   return (
     <div className="w-full mt-8 px-4 md:px-16 mb-12">
       <div className="relative w-full bg-gray-900 rounded-[32px] overflow-hidden flex flex-col items-center justify-center text-center border border-gray-800 shadow-lg min-h-[300px] py-10 px-8">
         {/* Dimmed background food image */}
         <img
-          src={FOOD_IMAGE}
+          src={POSTER_BG_URL}
           alt="Delicious food background"
           className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
         />
@@ -39,7 +36,8 @@ const Poster = () => {
           {/* Catchy Tagline */}
           <div className="mt-4 py-2 px-6 border-y border-white/10">
             <p className="text-orange-500 font-bold italic tracking-wide text-lg md:text-xl">
-              "From street food hits to high-end treats — satisfy every craving, right here."
+              "From street food hits to high-end treats — satisfy every craving,
+              right here."
             </p>
           </div>
         </div>
@@ -47,5 +45,4 @@ const Poster = () => {
     </div>
   );
 };
-
 export default Poster;

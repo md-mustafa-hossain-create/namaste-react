@@ -70,7 +70,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="md:col-span-3 bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-50">
+        <div className="md:col-span-3 bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
           <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
@@ -115,7 +115,7 @@ const Contact = () => {
 
             <button 
               type="submit"
-              className="mt-4 bg-swiggy-orange hover:bg-orange-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-swiggy-btn cursor-pointer"
+              className="mt-4 bg-swiggy-orange hover:bg-orange-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg cursor-pointer"
             >
               {submitted ? "Message Sent!" : "Send Message"}
               {!submitted && <Send className="w-5 h-5" />}

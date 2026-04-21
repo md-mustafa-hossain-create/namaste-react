@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ITEM_IMG_URL } from "../utils/constants";
+import { ITEM_IMG_URL, DELIVERY_FEE, PLATFORM_FEE } from "../utils/constants";
 import { clearCart } from "../store/slices/cartSlice";
-import VegIcon from "./icons/VegIcon";
-import NonVegIcon from "./icons/NonVegIcon";
+import VegIcon from "../components/icons/VegIcon";
+import NonVegIcon from "../components/icons/NonVegIcon";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
@@ -122,7 +122,7 @@ const Cart = () => {
               </div>
               <div className="flex justify-between">
                 <span>Delivery Fee | 2.5 kms</span>
-                <span className="text-swiggy-text-main">₹ 30.00</span>
+                <span className="text-swiggy-text-main">₹ {DELIVERY_FEE.toFixed(2)}</span>
               </div>
               <div className="border-b border-gray-100 pt-2"></div>
               <div className="flex justify-between">
@@ -133,7 +133,7 @@ const Cart = () => {
               </div>
               <div className="flex justify-between">
                 <span>Platform Fee</span>
-                <span className="text-swiggy-text-main">₹ 5.00</span>
+                <span className="text-swiggy-text-main">₹ {PLATFORM_FEE.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>GST and Restaurant Charges</span>
@@ -149,7 +149,7 @@ const Cart = () => {
                   To Pay
                 </span>
                 <span className="text-xl font-black text-swiggy-dark">
-                  ₹ {(totalPrice + 35 + totalPrice * 0.05).toFixed(2)}
+                  ₹ {(totalPrice + DELIVERY_FEE + PLATFORM_FEE + totalPrice * 0.05).toFixed(2)}
                 </span>
               </div>
             </div>
@@ -159,7 +159,7 @@ const Cart = () => {
             </button>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 border border-blue-50 bg-blue-50/20 flex gap-4 items-center">
+          <div className="bg-white rounded-2xl p-4 border border-blue-50 flex gap-4 items-center">
             <span className="text-2xl">🛡️</span>
             <div>
               <p className="text-[10px] uppercase font-black tracking-widest text-blue-800 opacity-60">

@@ -1,5 +1,5 @@
 import React from "react";
-import GroceryHeader from "./components/GroceryHeader";
+import GroceryHeader from "../components/Grocery/GroceryHeader";
 
 const Grocery = () => {
   return (

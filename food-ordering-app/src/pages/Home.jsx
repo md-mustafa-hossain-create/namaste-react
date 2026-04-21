@@ -1,13 +1,13 @@
-import RestaurantCard, { PromotedRestaurantCard } from "./RestaurantCard";
+import RestaurantCard, { PromotedRestaurantCard } from "../components/RestaurantCard";
 import useRestaurants from "../hooks/useRestaurants";
-import Shimmer from "./Shimmer";
-import FilterBtn from "./FilterBtn";
-import SearchBar from "./SearchBar";
+import Shimmer from "../components/Shimmer";
+import FilterBtn from "../components/FilterBtn";
+import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../hooks/useOnlineStatus";
-import Poster from "./Poster";
+import Poster from "../components/Poster";
 
-const Body = () => {
+const Home = () => {
   const { listOfRestaurants, filteredRestaurants, setFilteredRestaurants } =
     useRestaurants();
 
@@ -51,4 +51,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default Home;

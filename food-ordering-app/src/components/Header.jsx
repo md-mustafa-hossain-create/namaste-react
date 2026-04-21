@@ -1,16 +1,13 @@
-import { ShoppingBasket, ShoppingBag } from "lucide-react";
+import { ShoppingBasket, ShoppingBag, User } from "lucide-react";
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../store/slices/userSlice";
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Header = () => {
-  const [btnName, setBtnName] = useState("Log in");
-
-  function handleClick() {
-    btnName === "Log in" ? setBtnName("Log out") : setBtnName("Log in");
-  }
-
   const getNavLinkClass = ({ isActive }) =>
     isActive
       ? "text-swiggy-orange transition-colors duration-300"
@@ -18,8 +15,22 @@ const Header = () => {
 
   //subscribing to the redux store using a Selector
   const cartItems = useSelector((store) => store.cart.items);
+  const userAuth = useSelector((store) => store.user);
 
-  console.log(cartItems);
+  const dispatch = useDispatch();
+
+  // Very simple Logout function
+  async function handleAuth() {
+    try {
+      // 1. Tell Firebase to log the user out
+      await signOut(auth);
+      // NOTE: We don't need to manually clear Redux here! 
+      // The Watchman in App.jsx will automatically notice Firebase logged out, and clear Redux for us.
+    } catch (error) {
+      console.log("Logout Error:", error);
+    }
+  }
+
   return (
     <div className="flex justify-between items-center px-4 sm:px-8 xl:px-16 shadow-lg bg-white fixed w-full top-0 h-20 md:h-24 overflow-hidden z-50 transition-all font-sans">
       <div className="flex items-center gap-2">
@@ -100,16 +111,27 @@ const Header = () => {
           </div>
         </NavLink>
 
-        <button
-          className={`${
-            btnName === "Log in"
-              ? "bg-swiggy-dark hover:bg-gray-800"
-              : "bg-swiggy-orange hover:bg-orange-600 shadow-lg shadow-orange-500/20"
-          } py-2 md:py-3 xl:py-3.5 w-24 md:w-32 xl:w-40 rounded-xl text-white font-bold cursor-pointer text-sm md:text-base transition-all active:scale-95`}
-          onClick={handleClick}
-        >
-          {btnName}
-        </button>
+        {userAuth.isAuthenticated ? (
+          <button
+            onClick={handleAuth}
+            title="Click to log out"
+            className="flex items-center gap-2 md:gap-3 bg-white shadow-sm hover:shadow-md hover:border-red-200 border border-gray-100 py-1.5 pl-1.5 pr-3 md:pr-4 rounded-full text-swiggy-dark hover:text-red-500 font-bold cursor-pointer transition-all group active:scale-95"
+          >
+            <div className="bg-swiggy-orange text-white p-2 rounded-full group-hover:bg-red-500 transition-colors shadow-sm">
+              <User className="w-4 h-4 md:w-5 md:h-5" />
+            </div>
+            <span className="text-sm md:text-base max-w-[80px] md:max-w-[120px] truncate">
+              {userAuth.userInfo?.name || "User"}
+            </span>
+          </button>
+        ) : (
+          <Link to="/login">
+            <button className="bg-swiggy-dark hover:bg-gray-800 py-2 md:py-3 xl:py-3.5 w-24 md:w-32 xl:w-40 rounded-xl text-white font-bold cursor-pointer text-sm md:text-base transition-all active:scale-95 flex items-center justify-center gap-2">
+              <User className="w-4 h-4" />
+              Sign in
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
