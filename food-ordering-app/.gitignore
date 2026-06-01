@@ -1,7 +1,28 @@
+# Dependencies
 node_modules/
+
+# Parcel
 .parcel-cache/
 dist/
-.DS_Store
+
+# Security & Env
 .env
+.env.local
+.env.*
+!.env.example
+
+# Testing
+coverage/
+
+# Misc
+.DS_Store
+Thumbs.db
 .npm
-package-lock.json
+*.log
+*.tmp
+*.temp
+.eslintcache
+
+# IDE
+.vscode/
+.idea/

@@ -1,7 +1,7 @@
 import { ShoppingBasket, ShoppingBag, User } from "lucide-react";
 import { LOGO_URL } from "../utils/constants";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../store/slices/userSlice";
 import { signOut } from "firebase/auth";
@@ -18,16 +18,20 @@ const Header = () => {
   const userAuth = useSelector((store) => store.user);
 
   const dispatch = useDispatch();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   // Very simple Logout function
   async function handleAuth() {
     try {
+      setIsLoggingOut(true);
       // 1. Tell Firebase to log the user out
       await signOut(auth);
       // NOTE: We don't need to manually clear Redux here! 
       // The Watchman in App.jsx will automatically notice Firebase logged out, and clear Redux for us.
     } catch (error) {
       console.log("Logout Error:", error);
+    } finally {
+      setIsLoggingOut(false);
     }
   }
 
@@ -121,7 +125,7 @@ const Header = () => {
               <User className="w-4 h-4 md:w-5 md:h-5" />
             </div>
             <span className="text-sm md:text-base max-w-[80px] md:max-w-[120px] truncate">
-              {userAuth.userInfo?.name || "User"}
+              {isLoggingOut ? "Logging out..." : (userAuth.userInfo?.name || "User")}
             </span>
           </button>
         ) : (

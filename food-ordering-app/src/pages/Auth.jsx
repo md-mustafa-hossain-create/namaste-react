@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
   updateProfile 
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { logIn } from "../store/slices/userSlice";
 
 const Auth = () => {
   // 1. SIMPLE STATE
@@ -14,13 +16,16 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // 2. VERY SIMPLE AUTHENTICATION LOGIC
   const handleAuthSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage(""); // Clear old errors
+    setIsLoading(true); // Start loading
 
     try {
       if (isLoginView) {
@@ -31,7 +36,13 @@ const Auth = () => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         // Save name to Firebase
         await updateProfile(userCredential.user, { displayName: name });
-        // NOTE: App.jsx automatically listens and puts this name into Redux!
+        
+        // --- FIX: MANUALLY UPDATE REDUX ---
+        // We do this because onAuthStateChanged triggers BEFORE the name is saved above.
+        const { uid, email: userEmail } = auth.currentUser;
+        dispatch(
+          logIn({ uid: uid, email: userEmail, name: name })
+        );
       }
       
       // If success, simply go to Home page
@@ -40,6 +51,7 @@ const Auth = () => {
     } catch (error) {
       // If error, just show the message Firebase gives us (like "Invalid password")
       setErrorMessage(error.message);
+      setIsLoading(false); // Stop loading so user can try again
     }
   };
 
@@ -48,7 +60,7 @@ const Auth = () => {
     <div className="w-full min-h-screen bg-gray-50 flex items-center justify-center p-4">
       
       {/* Container */}
-      <div className="bg-white p-8 rounded-[2rem] shadow-lg w-full max-w-[400px] border border-gray-100">
+      <div className="bg-white p-8 rounded-4xl shadow-lg w-full max-w-[400px] border border-gray-100">
         
         {/* Title */}
         <div className="text-center mb-8">
@@ -111,9 +123,10 @@ const Auth = () => {
 
           <button
             type="submit"
-            className="w-full bg-swiggy-orange text-white py-4 rounded-xl font-bold text-lg hover:bg-orange-600 transition-all cursor-pointer font-black mt-2"
+            disabled={isLoading}
+            className={`w-full ${isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-swiggy-orange hover:bg-orange-600 cursor-pointer"} text-white py-4 rounded-xl font-bold text-lg transition-all mt-2`}
           >
-            {isLoginView ? "Log In" : "Create Account"}
+            {isLoading ? "Processing..." : (isLoginView ? "Log In" : "Create Account")}
           </button>
         </form>
 

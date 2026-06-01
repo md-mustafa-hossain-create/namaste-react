@@ -1,22 +1,24 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; // 👈 Add this line for Auth
+import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAuRYlwbOIRQNbjgNdXKrwPVamjX7vZ1s8",
-  authDomain: "namaste-food-aut.firebaseapp.com",
-  projectId: "namaste-food-aut",
-  storageBucket: "namaste-food-aut.firebasestorage.app",
-  messagingSenderId: "676550288954",
-  appId: "1:676550288954:web:7624da28e812a1707d3703",
-  measurementId: "G-885TGEFPWQ"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Export 'auth' so we can use it to login/signup in our Auth page
-export const auth = getAuth(app); 
+// Export services
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 // Optional: Analytics
-const analytics = getAnalytics(app);
+export const analytics = getAnalytics(app);
